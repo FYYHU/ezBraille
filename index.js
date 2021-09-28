@@ -8,16 +8,11 @@ const path = require('path');
 
 app.listen(3000, ()=>{console.log("cool")});
 
-//default load
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-  });
+app
+  .use(express.static(path.join(__dirname, 'public')))
+  .get('/', (req, res) => res.send('/index.html'))
 
 
-//http://localhost:3000/test will serve this text
-app.get('/test', function(req, res) {
-    res.send("this is testpage");
-  });
 
 
   console.log("tester")
