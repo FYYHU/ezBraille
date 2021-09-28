@@ -22,23 +22,12 @@ app.get('/test', function(req, res) {
 
 
 
-
-  
-
-
-
-//below liblouis braille library
-  const liblouis = require("liblouis");
+  var fs = require('fs');
+  var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
-  liblouis.enableOnDemandTableLoading("node_modules/liblouis-build/tables"); //path translation tables
 
+var br = require('braille');
 
-//unicode2.dis is experimental dis map
-var unicode_braille = liblouis.translateString("tables/unicode.dis,tables/en-us-comp8-ext.utb","k"); // last part is the language and grade table = > en-gb-g1.utb
+console.log(br.toBraille(text));
 
-
-console.log(unicode_braille);
-let decimal = unicode_braille.charCodeAt(0);//gives decimal of unicode
-let starter = decimal.toString(16) // converts decimal to hex
-console.log(String.fromCharCode(parseInt(starter,16))) // prints unicode char using hexcode
