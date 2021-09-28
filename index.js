@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
   });
 
 
-//http://localhost:3000/add will serve this text
+//http://localhost:3000/test will serve this text
 app.get('/test', function(req, res) {
     res.send("this is testpage");
   });
@@ -31,6 +31,14 @@ app.get('/test', function(req, res) {
 
 var br = require('braille');
 
-console.log(br.toBraille(text));
+console.log(br.toBraille("b"));
+console.log(br.toBraille("B")); //Some limits using this library not capitals
+
+
+//TODO
+//Create map that maps our braille output to 2 rotation angles.
+//Potential i.e. format "braille" -> 090180 = left rot 90 and right rot 180
+//other format is binary i.e. "braille"-> 010111 first 3 digit form left rot, other form right rot = ⠺
+const hex_rot = new Map();
 
 

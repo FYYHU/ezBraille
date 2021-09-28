@@ -1,0 +1,27 @@
+{
+  "name": "ezbraille",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "14.17.6"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "braille": "^1.1.0",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YokaiMain/ezBraille.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YokaiMain/ezBraille/issues"
+  },
+  "homepage": "https://github.com/YokaiMain/ezBraille#readme"
+}
