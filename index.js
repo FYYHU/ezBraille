@@ -3,10 +3,12 @@
 //running node index.js will create local server at http://localhost:3000/
 const express = require('express')
 const app = express()
-const port = 3000
 const path = require('path');
 
-app.listen(3000, ()=>{console.log("cool")});
+
+app.set('port', (process.env.PORT || 5000))
+
+app.listen(app.get("port"), ()=>{console.log("cool")});
 
 app
   .use(express.static(path.join(__dirname, 'public')))
