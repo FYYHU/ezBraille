@@ -20,6 +20,8 @@ app.get('/test', function(req, res) {
   });
 
 
+  console.log("tester")
+
 
 
   var fs = require('fs');
@@ -30,4 +32,5 @@ app.get('/test', function(req, res) {
 var br = require('braille');
 
 console.log(br.toBraille(text));
+
 
