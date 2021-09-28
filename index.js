@@ -1,6 +1,7 @@
 
 //local server setup
-//running node index.js will create local server at http://localhost:3000/
+//running node index.js will create local server at http://localhost:5000/
+//or global server run on https://vast-forest-25811.herokuapp.com/
 const express = require('express')
 const app = express()
 const path = require('path');
