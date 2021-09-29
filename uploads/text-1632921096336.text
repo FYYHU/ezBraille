@@ -1,0 +1,61 @@
+PMID- 30130228
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20200710
+LR  - 20200710
+IS  - 1941-0506 (Electronic)
+IS  - 1077-2626 (Linking)
+VI  - 25
+IP  - 10
+DP  - 2019 Oct
+TI  - Node-Link or Adjacency Matrices: Old Question, New Insights.
+PG  - 2940-2952
+LID - 10.1109/TVCG.2018.2865940 [doi]
+AB  - Visualizing network data is applicable in domains such as biology, engineering, and 
+      social sciences. We report the results of a study comparing the effectiveness of the 
+      two primary techniques for showing network data: node-link diagrams and adjacency 
+      matrices. Specifically, an evaluation with a large number of online participants 
+      revealed statistically significant differences between the two visualizations. Our 
+      work adds to existing research in several ways. First, we explore a broad spectrum 
+      of network tasks, many of which had not been previously evaluated. Second, our study 
+      uses two large datasets, typical of many real-life networks not explored by previous 
+      studies. Third, we leverage crowdsourcing to evaluate many tasks with many 
+      participants. This paper is an expanded journal version of a Graph Drawing (GD'17) 
+      conference paper. We evaluated a second dataset, added a qualitative feedback 
+      section, and expanded the procedure, results, discussion, and limitations sections.
+FAU - Okoe, Mershack
+AU  - Okoe M
+FAU - Jianu, Radu
+AU  - Jianu R
+FAU - Kobourov, Stephen
+AU  - Kobourov S
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, U.S. Gov't, Non-P.H.S.
+DEP - 20180817
+PL  - United States
+TA  - IEEE Trans Vis Comput Graph
+JT  - IEEE transactions on visualization and computer graphics
+JID - 9891704
+SB  - IM
+MH  - Adult
+MH  - Aged
+MH  - *Computer Graphics
+MH  - Crowdsourcing
+MH  - *Data Visualization
+MH  - Female
+MH  - Humans
+MH  - Male
+MH  - Middle Aged
+MH  - Task Performance and Analysis
+MH  - Young Adult
+EDAT- 2018/08/22 06:00
+MHDA- 2020/07/11 06:00
+CRDT- 2018/08/22 06:00
+PHST- 2018/08/22 06:00 [pubmed]
+PHST- 2020/07/11 06:00 [medline]
+PHST- 2018/08/22 06:00 [entrez]
+AID - 10.1109/TVCG.2018.2865940 [doi]
+PST - ppublish
+SO  - IEEE Trans Vis Comput Graph. 2019 Oct;25(10):2940-2952. doi: 
+      10.1109/TVCG.2018.2865940. Epub 2018 Aug 17.

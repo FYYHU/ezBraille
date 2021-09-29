@@ -7,6 +7,17 @@ const app = express()
 const path = require('path');
 const multer = require('multer');
 
+
+
+app.set('port', (process.env.PORT || 5000))
+
+app.listen(app.get("port"), ()=>{console.log("cool")});
+
+app
+  .use(express.static(path.join(__dirname, 'public')))
+  .get('/', (req, res) => res.send('/index.html'))
+
+
 //storage upload file
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -19,21 +30,14 @@ const storage = multer.diskStorage({
   }
 });
 
-app.set('port', (process.env.PORT || 5000))
-
-app.listen(app.get("port"), ()=>{console.log("cool")});
-
-app
-  .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (req, res) => res.send('/index.html'))
-
 app.post('/upload', (req, res) => {
     // 'profile_pic' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage}).single('profile_pic');
-
+    let upload = multer({ storage: storage}).single('text');
+    
     upload(req, res, function(err) {
-        res.send(`You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./">Upload another image</a>`);
+        res.send(req.file);
     });
+    console.log(req.file);
 });
 
 
