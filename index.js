@@ -33,14 +33,21 @@ const storage = multer.diskStorage({
 });
 
 app.post('/upload', (req, res) => {
-  EmptyUploads();
+    EmptyUploads();
     // 'profile_pic' is the name of our file input field in the HTML form
     let upload = multer({ storage: storage}).single('text');
     
     upload(req, res, function(err) {
-        res.send(req.file);
+        console.log("upload")
+        let upload_folder = path.join(__dirname, 'uploads/')
+        fs.readdirSync(upload_folder).forEach(file => {
+          console.log(fs.readFileSync(path.join(__dirname, 'uploads/' + file),'utf-8'));
     });
+    });
+
     
+    
+
 });
 
 
