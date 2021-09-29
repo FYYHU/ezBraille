@@ -41,7 +41,7 @@ app.post('/upload', (req, res) => {
         console.log("upload")
         let upload_folder = path.join(__dirname, 'uploads/')
         fs.readdirSync(upload_folder).forEach(file => {
-          console.log(fs.readFileSync(path.join(__dirname, 'uploads/' + file),'utf-8'));
+          res.send(fs.readFileSync(path.join(__dirname, 'uploads/' + file),'utf-8'));
     });
     });
 
