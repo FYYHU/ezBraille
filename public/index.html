@@ -8,15 +8,24 @@
     <body bgcolor="Lightskyblue">  
     <br>  
     <br>  
-    <form method="POST" action="/upload" enctype="multipart/form-data">
       <div>
           <label>Select your profile picture:</label>
-          <input type="file" name="text" accept=".text" />
+          <input type="file" id = "textloc" name="text" accept=".text" />
       </div>
       <div>
-          <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+        <button onclick="convert()">convert</button>
       </div>
-  </form>
+  <script>
+    function convert() {
+      var reader = new FileReader();
+      let file = document.getElementById("textloc").files[0];
+      reader.readAsText(file);
+      reader.onload = function() {
+    console.log(reader.result);
+  };
+    }
+    
+    </script>
 
     </body>  
     </html>  

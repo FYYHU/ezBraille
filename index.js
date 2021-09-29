@@ -5,9 +5,9 @@
 const express = require('express')
 const app = express()
 const path = require('path');
-const multer = require('multer');
 
-
+var fs = require('fs');
+var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -18,35 +18,7 @@ app
   .get('/', (req, res) => res.send('/index.html'))
 
 
-//storage upload file
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'uploads/');
-  },
 
-  // By default, multer removes file extensions so let's add them back
-  filename: function(req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
-app.post('/upload', (req, res) => {
-    // 'profile_pic' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage}).single('text');
-    
-    upload(req, res, function(err) {
-        res.send(req.file);
-    });
-    console.log(req.file);
-});
-
-
-
-
-
-
-  var fs = require('fs');
-  var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
 
