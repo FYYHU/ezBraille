@@ -8,23 +8,15 @@
     <body bgcolor="Lightskyblue">  
     <br>  
     <br>  
-    <form action="/add
-    " method="POST">
-        <fieldset>
-          <h3>Add new employee</h3>
-          <label>First name</label>
-          <input type ="text" name="name" required>
-          <br><br>
-          <label>Last name</label>
-          <input type="text" name="email" required>
-          <br><br>
-          <label>Password</label>
-          <input type="password" name="password" required>
-          <br><br>
-          <button type ="submit">Submit</button>
-
-        </fieldset>
-      </form>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <div>
+          <label>Select your profile picture:</label>
+          <input type="file" name="text" accept=".text" />
+      </div>
+      <div>
+          <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+      </div>
+  </form>
 
     </body>  
     </html>  

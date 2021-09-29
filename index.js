@@ -5,7 +5,19 @@
 const express = require('express')
 const app = express()
 const path = require('path');
+const multer = require('multer');
 
+//storage upload file
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'uploads/');
+  },
+
+  // By default, multer removes file extensions so let's add them back
+  filename: function(req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -15,10 +27,34 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .get('/', (req, res) => res.send('/index.html'))
 
+app.post('/upload', (req, res) => {
+    // 'profile_pic' is the name of our file input field in the HTML form
+    let upload = multer({ storage: storage}).single('profile_pic');
+
+    upload(req, res, function(err) {
+        // req.file contains information of uploaded file
+        // req.body contains information of text fields, if there were any
+
+        if (req.fileValidationError) {
+            return res.send(req.fileValidationError);
+        }
+        else if (!req.file) {
+            return res.send('Please select an image to upload');
+        }
+        else if (err instanceof multer.MulterError) {
+            return res.send(err);
+        }
+        else if (err) {
+            return res.send(err);
+        }
+
+        // Display uploaded image for user validation
+        res.send(`You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./">Upload another image</a>`);
+    });
+});
 
 
 
-  console.log("tester")
 
 
 
@@ -42,5 +78,6 @@ console.log(br.toBraille("B")); //Some limits using this library not capitals
 //Then its just reading the byte per bit from right to left to know which dot is on.
 //for example 01101011 is the same as dots 124
 const hex_rot = new Map();
+
 
 
