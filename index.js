@@ -40,18 +40,14 @@ app.post('/upload', (req, res) => {
     upload(req, res, function(err) {
         console.log("upload")
         let upload_folder = path.join(__dirname, 'uploads/')
-        fs.readdirSync(upload_folder).forEach(file => {
-          res.send(fs.readFileSync(path.join(__dirname, 'uploads/' + file),'utf-8'));
+        let first_upload = fs.readdirSync(upload_folder)[0];
+        let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');
+        res.send(file_content);
     });
-    });
-
-    
-    
-
 });
 
 
-function EmptyUploads(){//this way only one file is kept
+function EmptyUploads(){//this way only the latest file is kept
   fileDir = path.join(__dirname, 'uploads');
   fsExtra.emptyDirSync(fileDir);
   console.log("accessed");
