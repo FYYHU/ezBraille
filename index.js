@@ -6,6 +6,8 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const multer = require('multer');
+const fsExtra = require('fs-extra')
+
 
 
 
@@ -31,17 +33,22 @@ const storage = multer.diskStorage({
 });
 
 app.post('/upload', (req, res) => {
+  EmptyUploads();
     // 'profile_pic' is the name of our file input field in the HTML form
     let upload = multer({ storage: storage}).single('text');
     
     upload(req, res, function(err) {
         res.send(req.file);
     });
-    console.log(req.file);
+    
 });
 
 
-
+function EmptyUploads(){//this way only one file is kept
+  fileDir = path.join(__dirname, 'uploads');
+  fsExtra.emptyDirSync(fileDir);
+  console.log("accessed");
+}
 
 
 
