@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
   
     // By default, multer removes file extensions so let's add them back
     filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname +"-" +"translated" + path.extname(file.originalname));
     }
   });
 
@@ -42,10 +42,19 @@ app.post('/upload', (req, res) => {
         console.log("upload")
         let upload_folder = path.join(__dirname, 'uploads/')
         let first_upload = fs.readdirSync(upload_folder)[0];
-        let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');
+        let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');//file_upload path
         res.send(file_content);
     });
 });
+
+//dowload api 
+app.get('/download', function(req, res){
+    let upload_folder = path.join(__dirname, 'uploads/')
+    let first_upload = fs.readdirSync(upload_folder)[0];
+    
+    res.download(path.join(__dirname, 'uploads/' + first_upload)); // Set disposition and send it.
+  });
+
 
 
 function EmptyUploads(){//deletes all files in uploads
