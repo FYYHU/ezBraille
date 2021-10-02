@@ -1,41 +1,42 @@
 
-//local server setup
-//running node index.js will create local server at http://localhost:5000/
-//or global server run on https://vast-forest-25811.herokuapp.com/
-const express = require('express')
-const app = express()
-const path = require('path');
-const multer = require('multer');
-const fsExtra = require('fs-extra')
+//modules
+const express = require('express');
+const br = require('braille');//braille lib
+const fs = require('fs');//file read/write lib
+const path = require('path');//path creation lib
+const multer = require('multer');//file storage lib
+const fsExtra = require('fs-extra');//;delete file lib
+
+const app = express();
 
 
 
+//storage upload file setup/location
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/');
+    },
+  
+    // By default, multer removes file extensions so let's add them back
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
 
+
+//server initialization and default route
 app.set('port', (process.env.PORT || 5000))
-
-app.listen(app.get("port"), ()=>{console.log("cool")});
-
+app.listen(app.get("port"), ()=>{console.log("server running")});
 app
   .use(express.static(path.join(__dirname, 'public')))
   .get('/', (req, res) => res.send('/index.html'))
 
 
-//storage upload file
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'uploads/');
-  },
 
-  // By default, multer removes file extensions so let's add them back
-  filename: function(req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
+//upload api
 app.post('/upload', (req, res) => {
     EmptyUploads();
-    // 'profile_pic' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage}).single('text');
+    let upload = multer({ storage: storage}).single('text');//text is field in html
     
     upload(req, res, function(err) {
         console.log("upload")
@@ -47,7 +48,7 @@ app.post('/upload', (req, res) => {
 });
 
 
-function EmptyUploads(){//this way only the latest file is kept
+function EmptyUploads(){//deletes all files in uploads
   fileDir = path.join(__dirname, 'uploads');
   fsExtra.emptyDirSync(fileDir);
   console.log("accessed");
@@ -55,12 +56,12 @@ function EmptyUploads(){//this way only the latest file is kept
 
 
 
-  var fs = require('fs');
-  var text = fs.readFileSync("./bigtext.txt", 'utf-8');
+//readfile setup
+var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
 
-var br = require('braille');
+
 
 console.log(br.toBraille("b"));
 console.log(br.toBraille("B")); //Some limits using this library not capitals
