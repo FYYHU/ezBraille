@@ -1,5 +1,4 @@
 var g = "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿";
-console.log(g);
 for (var i = 0; i < g.length; i++) {
     //offset calculation take utf-braille(hex value) = 2800 + hex
     //CharCodeAt returns decimal of char.
@@ -8,8 +7,12 @@ for (var i = 0; i < g.length; i++) {
     //Now we get the braille char in ascii format
     //note the empty cell is space with ascii code 32(dec)
     var offsetted = g.charCodeAt(i)-10240+32;
-    process.stdout.write(String.fromCharCode(offsetted));
+    process.stdout.write(String.fromCharCode(offsetted) + " ");
     
+  }
+  console.log(" ");
+for (var i = 0; i < g.length; i++) {
+    process.stdout.write(g.charAt(i) + " ");
   }
 
   //console.log(String.fromCharCode(32));
