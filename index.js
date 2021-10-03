@@ -71,6 +71,13 @@ function Translate(){
     let file_location = path.join(__dirname, 'uploads/' + first_upload);
     var text = fs.readFileSync(file_location, 'utf8');
     var translation = br.toBraille(text);
+    var translation_array = translation.split("");
+    for (var i = 0; i < translation_array.length; i++) {
+        var offsetted = translation_array[i].charCodeAt(0)-10240+32;
+        translation_array[i] = String.fromCharCode(offsetted);
+        
+      }
+    translation = translation_array.join("");
     fs.writeFile(file_location, translation,function(err){
         if (err) throw err;
         console.log("translated");
@@ -84,7 +91,6 @@ var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
 
-console.log(br.toBraille("ok"));
 
 
 
