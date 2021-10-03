@@ -43,6 +43,7 @@ app.post('/upload', (req, res) => {
         let upload_folder = path.join(__dirname, 'uploads/')
         let first_upload = fs.readdirSync(upload_folder)[0];
         let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');//file_upload path
+        Translate();
         res.send(file_content);
     });
 });
@@ -51,8 +52,8 @@ app.post('/upload', (req, res) => {
 app.get('/download', function(req, res){
     let upload_folder = path.join(__dirname, 'uploads/')
     let first_upload = fs.readdirSync(upload_folder)[0];
-    
     res.download(path.join(__dirname, 'uploads/' + first_upload)); // Set disposition and send it.
+    
   });
 
 
@@ -63,6 +64,19 @@ function EmptyUploads(){//deletes all files in uploads
   console.log("accessed");
 }
 
+//Translate first file in uploads
+function Translate(){
+    let upload_folder = path.join(__dirname, 'uploads/')
+    let first_upload = fs.readdirSync(upload_folder)[0];
+    let file_location = path.join(__dirname, 'uploads/' + first_upload);
+    var text = fs.readFileSync(file_location, 'utf8');
+    var translation = br.toBraille(text);
+    fs.writeFile(file_location, translation,function(err){
+        if (err) throw err;
+        console.log("translated");
+    })
+}
+
 
 
 //readfile setup
@@ -70,10 +84,8 @@ var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
 
+console.log(br.toBraille("ok"));
 
-
-console.log(br.toBraille("b"));
-console.log(br.toBraille("B")); //Some limits using this library not capitals
 
 
 //TODO
