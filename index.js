@@ -44,7 +44,7 @@ app.post('/upload', (req, res) => {
         let first_upload = fs.readdirSync(upload_folder)[0];
         let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');//file_upload path
         Translate();
-        res.send(file_content);
+        res.sendFile(path.join(__dirname, 'public/down.html'));
     });
 });
 
