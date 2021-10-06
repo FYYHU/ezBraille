@@ -23,8 +23,14 @@ int Compare(char x){
       // this is space mapped to the empty cell
       break;
     case '!':
+      '!' -> '⠁'
       // this is the translation '!' -> '⠁'
       break;
+    case '"':
+      '"' -> ''
+      break;
+    case '#':
+      '#' -> ''
     case character:
       //in comments what mapped to what. you can just copy paste the braille in the comments like this ⠽⠕⠥⠀⠙⠊⠙⠀⠇⠑
       //complete the cases
