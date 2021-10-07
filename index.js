@@ -48,6 +48,10 @@ app.post('/upload', (req, res) => {
     });
 });
 
+app.get('/Home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Home.html'));
+});
+
 //dowload api 
 app.get('/download', function(req, res){
     let upload_folder = path.join(__dirname, 'uploads/')
