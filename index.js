@@ -40,9 +40,6 @@ app.post('/upload', (req, res) => {
     
     upload(req, res, function(err) {
         console.log("upload")
-        let upload_folder = path.join(__dirname, 'uploads/')
-        let first_upload = fs.readdirSync(upload_folder)[0];
-        let file_content = fs.readFileSync(path.join(__dirname, 'uploads/' + first_upload), 'utf-8');//file_upload path
         Translate();
         res.sendFile(path.join(__dirname, 'public/down.html'));
     });
@@ -63,7 +60,7 @@ app.get('/download', function(req, res){
 
 
 function EmptyUploads(){//deletes all files in uploads
-  fileDir = path.join(__dirname, 'uploads');
+  let fileDir = path.join(__dirname, 'uploads');
   fsExtra.emptyDirSync(fileDir);
   console.log("accessed");
 }
@@ -73,8 +70,8 @@ function Translate(){
     let upload_folder = path.join(__dirname, 'uploads/')
     let first_upload = fs.readdirSync(upload_folder)[0];
     let file_location = path.join(__dirname, 'uploads/' + first_upload);
-    var text = fs.readFileSync(file_location, 'utf8');
-    var translation = br.toBraille(text);
+    var text_file = fs.readFileSync(file_location, 'utf8');
+    var translation = br.toBraille(text_file);
     var translation_array = translation.split("");
     for (var i = 0; i < translation_array.length; i++) {
         var offsetted = translation_array[i].charCodeAt(0)-10240+32;
