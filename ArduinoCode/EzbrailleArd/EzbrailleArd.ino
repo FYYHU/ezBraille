@@ -23,100 +23,100 @@ int Compare(char x){
       // this is space mapped to the empty cell
       break;
     case '!':
-      //'!' -> '⠁'
+      //'!' -> '⠮'
       break;
     case '"':
-      //'"' -> '⠂'
+      //'"' -> '⠐'
       break;
     case '#':
-      //'#' -> '⠃' 
+      //'#' -> '⠼' 
       break
     case'$': 
-      //'$' -> '⠄'
+      //'$' -> '⠫'
       break;
     case'%':
-      //'%' -> '⠅'
+      //'%' -> '⠩'
       break;
     case'&':
-      //'&' ->'⠆'
+      //'&' ->'⠯'
       break;
     case''':
-      //''' ->'⠇'
+      //''' ->'⠄'
       break;
     case'(':
-      //'(' ->'⠈'
+      //'(' ->'⠷'
       break;
     case')':
-      //')' ->'⠉'
+      //')' ->'⠾'
       break;
     case'*':
-      //'*' ->'⠊'
+      //'*' ->'⠡'
       break;
     case'+':
-      //'+' ->'⠋'
+      //'+' ->'⠬'
       break;
     case',':
-      //',' ->'⠌'
+      //',' ->'⠠'
       break;
     case'-':
-      //'-' ->'⠍'
+      //'-' ->'⠤'
       break;
     case'.':
-      //'.' ->'⠎'
+      //'.' ->'⠨'
       break;
     case'/':
-      //'/' ->'⠏'
+      //'/' ->'⠌'
       break;
     case'0':
-      //'0' ->'⠐'
+      //'0' ->'⠴'
       break;
     case'1':
-      //'1' ->'⠑'
+      //'1' ->'⠂'
       break;
     case'2':
-      //'2' ->'⠒'
+      //'2' ->'⠆'
       break;
     case'3':
-      //'3' ->'⠓'
+      //'3' ->'⠒'
       break;
     case'4':
-      //'4' ->'⠔'
+      //'4' ->'⠲'
       break;
     case'5':
-      //'5' ->'⠕'
+      //'5' ->'⠢'
       break;
     case'6':
       //'6' ->'⠖'
       break;
     case'7':
-      //'7' ->'⠗'
+      //'7' ->'⠶'
       break;
     case'8':
-      //'8' ->'⠘'
+      //'8' ->'⠦'
       break;
     case'9':
-      //'9' ->'⠙'
+      //'9' ->'⠔'
       break;
     case':':
-      //':' ->'⠚'
+      //':' ->'⠱'
       break;
     case';':
-      //';' ->'⠛'
+      //';' ->'⠰'
       break;
     case'<':
-      //'<' ->'⠜'
+      //'<' ->'⠣'
       break;
     case'=':
-      //'=' ->'⠝'
+      //'=' ->'⠿'
       break;
     case'>':
-      //'>' ->'⠞'
+      //'>' ->'⠜'
       break;
     case'?':
-      //'?' ->'⠟'
+      //'?' ->'⠹'
       break;
     case'@':
-      //'@' ->'⠠'
+      //'@' ->'⠈'
       break;
     case'A':
       //'A' ->'⠁'
@@ -149,67 +149,67 @@ int Compare(char x){
       //'J' ->'⠚'
       break;
     case'K':
-      //'K' ->''
+      //'K' ->'⠅'
       break;
     case'L':
-      //'L' ->''
+      //'L' ->'⠇'
       break;
     case'M':
-      //'M' ->''
+      //'M' ->'⠍'
       break;
     case'N':
-      //'N' ->''
+      //'N' ->'⠝'
       break;
     case'O':
-      //'O' ->''
+      //'O' ->'⠕'
       break;
     case'P':
-      //'P' ->''
+      //'P' ->'⠏'
       break;
     case'Q':
-      //'Q' ->''
+      //'Q' ->'⠟'
       break;
     case'R':
-      //'R' ->''
+      //'R' ->'⠗'
       break;
     case'S':
-      //'S' ->''
+      //'S' ->'⠎'
       break;
     case'T':
-      //'T' ->''
+      //'T' ->'⠞'
       break;
     case'U':
-      //'U' ->''
+      //'U' ->'⠥'
       break;
     case'V':
-      //'V' ->''
+      //'V' ->'⠧'
       break;
     case'W':
-      //'W' ->''
+      //'W' ->'⠺'
       break;
     case'X':
-      //'X' ->''
+      //'X' ->'⠭'
       break;
     case'Y':
-      //'Y' ->''
+      //'Y' ->'⠽'
       break;
     case'Z':
-      //'Z' ->''
+      //'Z' ->'⠵'
       break;
     case']':
-      //']' ->''
+      //']' ->'⠻'
       break;
     case'[':
-      //'[' ->''
+      //'[' ->'⠪'
       break;
     case'/':
-      //'/' ->''
+      //'/' ->'⠌'
       break;
     case'^':
-      //'^' ->''
+      //'^' ->'⠘'
       break;
     case'_':
-      //'_' ->''
+      //'_' ->'⠸⠸'
       break;
     default:
       // default case is if everything above fails
