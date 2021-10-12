@@ -25,9 +25,63 @@
 #include <SD.h>
 
 
-File root;
-File myFile;
-char temp;
+//Global variables
+
+
+//6 character arrays
+char prev[6];
+char current[6];
+char next[6];
+//class has to be created before object is being created
+ class FileSyst {
+    private:
+      File root = SD.open("/");
+    public:
+      String Current_File;
+      String SDFile1;
+      String SDFile2;
+      String SDFile3;
+      String File_List[3];
+      FileSyst() {//constructor
+        for (int i = 0; i < 4; i++) {//loop over the 4 first files (we skip file 1) and store the 3 file names
+          File entry =  root.openNextFile();
+          if (! entry) {
+            // no more files
+            break;
+          }
+          else if (i == 0){
+            Serial.println("skipped");
+            //skip .DAT file
+          } 
+          else if (i == 1)
+            {
+              Serial.println(entry.name());
+              SDFile1 = entry.name();
+            }
+          else if (i == 2)
+          {
+            Serial.println(entry.name());
+            SDFile2 = entry.name();
+          }
+          else if (i == 3)
+          {
+            Serial.println(entry.name());
+            SDFile3 = entry.name();
+          }
+        }
+        String File_List[] = {SDFile1,SDFile2,SDFile3};
+      }
+
+      //TODO create method to toggle Files
+      void Toggle_File(){
+
+      }
+      //TODO create method to Read file
+
+
+
+  };
+
 void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -43,11 +97,11 @@ void setup() {
   }
   Serial.println("initialization done.");
 
-  root = SD.open("/");
-
-  TestFilereading(root);
+  
 
   Serial.println("done!");
+
+  FileSyst k;
 }
 
 void loop() {
@@ -55,35 +109,18 @@ void loop() {
 }
 
 
-//READ files:
-//Skip file 1 (for whatever reason there is a .dat file that is read) and read the next 3 files unless they are empty;
 
-void TestFilereading(File dir) {
+
+void FilereadingInit(File dir) {
   unsigned long start;
   unsigned long endtime;
-  for (int i = 0; i < 4; i++) {//loop over the 4 first files
-    Serial.println(i);
-    File entry =  dir.openNextFile();
-    if (i == 0){
-      Serial.println("skipped");
-      //skip system file
-      }else {
-    if (! entry) {
-      // no more files
-      break;
-    }
-    start = micros();
-    Serial.println(entry.name());
-    myFile = SD.open(entry.name());
+
+    start = micros();//start timer
     Serial.println("Micro sec per char iteration");
-    while (myFile.available()) {
-      temp = myFile.read();
-    }
-    endtime = micros();
+    //while (myFile1.available()) {
+    //  myFile1.read();//reads char
+    //}
+    endtime = micros();//store time
     Serial.println(start);
     Serial.println(endtime);
-      }
-    entry.close();
-  }
-  
-}
+    }
