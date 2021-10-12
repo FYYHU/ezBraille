@@ -36,11 +36,13 @@ char next[6];
  class FileSyst {
     private:
       File root = SD.open("/");
-    public:
-      String Current_File;
+    protected:
       String SDFile1;
       String SDFile2;
       String SDFile3;
+    public:
+      String Current_File;
+      
       String File_List[3];
       FileSyst() {//constructor
         for (int i = 0; i < 4; i++) {//loop over the 4 first files (we skip file 1) and store the 3 file names
@@ -76,7 +78,10 @@ char next[6];
       void Toggle_File(){
 
       }
-      //TODO create method to Read file
+      //TODO create method to Read file and return char
+      char Read_current(){
+
+      }
 
 
 
