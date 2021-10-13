@@ -83,9 +83,12 @@ char next[6];
             SDFile3 = entry.name();
           }
         }
-        String File_List[] = {SDFile1,SDFile2,SDFile3};//list first 3 files
+        //init list
+        File_List[0] = SDFile1;
+        File_List[1] = SDFile2;
+        File_List[2] = SDFile3;
         //open the first file
-        Reading = SD.open(SDFile1);
+        Reading = SD.open(File_List[0]);
       }
 
       //TODO create method to toggle Files
@@ -95,6 +98,8 @@ char next[6];
         //assign new file to current
         counter_files = (counter_files + 1)% Number_files;
         Current_File = File_List[counter_files];
+        Serial.print("we toggle and are now reading");
+        Serial.println(File_List[counter_files]);
         //reopen
         Reading = SD.open(Current_File);
       }
@@ -108,8 +113,8 @@ char next[6];
           return ' ';
         }
       }
-      //put next 6 characters in temp
-      void Read_next_temp_six_char(){
+      //read next six char
+      void Read_next_six_char(){
         for (int i = 0; i < 6;i++){
           temp[i] = Read_current();
           //reassign each character
@@ -117,14 +122,17 @@ char next[6];
           Current_Line[i] = Next_Line[i];
           Next_Line[i] = temp[i];
         }
+        Serial.print("location ");
+        Serial.println(Reading.position());
         
         
       }
-      //previous next 6 characters in temp
-      void Read_prev_temp_six_char(){
-        unsigned long location = Reading.position()-12;
+      //previous 6 characters
+      void Read_prev_six_char(){
+        unsigned long location = Reading.position()-18;
         boolean checker = Reading.seek(location);
           if (checker){
+            Serial.println("prevexist");
             for (int i = 0; i < 6;i++){
             temp[i] = Read_current();
             Next_Line[i] = Current_Line[i];
@@ -133,10 +141,13 @@ char next[6];
             }
           }
           else {
-            for (int i = 0; i < 6;  i++){
-              temp[i] = ' ';
-              }
+            //we reset back to start;
+            Serial.println("prev not exist");
+            Reading.seek(0);
+            Read_next_six_char();
             }
+         Serial.print("location ");
+         Serial.println(Reading.position());
       }
 
   };
@@ -156,30 +167,57 @@ void setup() {
   }
   Serial.println("initialization done.");
 
-  
-
   Serial.println("done!");
 
+  
   FileSyst FileSystemSD;
+  Serial.println("toggling");
+  Serial.println("now system reading: ");
+  Serial.println("next");
+  FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+     Serial.println("next");
+  FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+      Serial.println("next");
+  FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+      Serial.println("next");
+  FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+        Serial.println("prev");
+  FileSystemSD.Read_prev_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+      Serial.println("prev");
+  FileSystemSD.Read_prev_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+      Serial.println("prev");
+  FileSystemSD.Read_prev_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+
 }
 
 void loop() {
   // nothing happens after setup finishes.
 }
-
-
-
-
-void FilereadingInit(File dir) {
-  unsigned long start;
-  unsigned long endtime;
-
-    start = micros();//start timer
-    Serial.println("Micro sec per char iteration");
-    //while (myFile1.available()) {
-    //  myFile1.read();//reads char
-    //}
-    endtime = micros();//store time
-    Serial.println(start);
-    Serial.println(endtime);
-    }
