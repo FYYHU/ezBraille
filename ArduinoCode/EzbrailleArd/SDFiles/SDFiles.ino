@@ -129,7 +129,7 @@ char next[6];
       }
       //previous 6 characters
       void Read_prev_six_char(){
-        unsigned long location = Reading.position()-24;
+        unsigned long location = Reading.position()-24;//reader goes to 6 characters before previous
         boolean checker = Reading.seek(location);
           if (checker){
             Serial.println("prevexist");
@@ -139,9 +139,10 @@ char next[6];
             Current_Line[i] = Prev_Line[i];
             Prev_Line[i] = temp[i];
             }
-            Reading.seek(Reading.position()+6);
+            Reading.seek(Reading.position()+6);//position reader head back to the last character of next;
           }
           else{
+            //note this means prev is empty so return default state where prev is empty current is [0,6] and next is [6,12]
             Reading.seek(0);
             Serial.println("prev not exist");
             for (int i = 0; i < 6;i++){
@@ -177,7 +178,7 @@ void setup() {
 
   Serial.println("done!");
 
-  
+  //File reading  
   FileSyst FileSystemSD;
   Serial.println("toggling");
   Serial.println("now system reading: ");
@@ -229,6 +230,13 @@ void setup() {
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+   FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 6; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+    
+    
 
 }
 
