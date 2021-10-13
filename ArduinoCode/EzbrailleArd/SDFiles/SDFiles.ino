@@ -129,7 +129,7 @@ char next[6];
       }
       //previous 6 characters
       void Read_prev_six_char(){
-        unsigned long location = Reading.position()-18;
+        unsigned long location = Reading.position()-24;
         boolean checker = Reading.seek(location);
           if (checker){
             Serial.println("prevexist");
@@ -139,13 +139,21 @@ char next[6];
             Current_Line[i] = Prev_Line[i];
             Prev_Line[i] = temp[i];
             }
+            Reading.seek(Reading.position()+6);
           }
-          else {
-            //we reset back to start;
-            Serial.println("prev not exist");
+          else{
             Reading.seek(0);
-            Read_next_six_char();
+            Serial.println("prev not exist");
+            for (int i = 0; i < 6;i++){
+              temp[i] = Read_current();
+              Current_Line[i] = temp[i];
+              Prev_Line[i] = ' ';
             }
+            for (int i = 0; i < 6;i++){
+              Next_Line[i] = Read_current();
+            }
+            
+         }
          Serial.print("location ");
          Serial.println(Reading.position());
       }
@@ -179,36 +187,42 @@ void setup() {
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
      Serial.println("next");
   FileSystemSD.Read_next_six_char();
   //Print text in current
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
       Serial.println("next");
   FileSystemSD.Read_next_six_char();
   //Print text in current
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
       Serial.println("next");
   FileSystemSD.Read_next_six_char();
   //Print text in current
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
         Serial.println("prev");
   FileSystemSD.Read_prev_six_char();
   //Print text in current
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
       Serial.println("prev");
   FileSystemSD.Read_prev_six_char();
   //Print text in current
   for (int i = 0; i < 6; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+    Serial.println(" ");
       Serial.println("prev");
   FileSystemSD.Read_prev_six_char();
   //Print text in current
