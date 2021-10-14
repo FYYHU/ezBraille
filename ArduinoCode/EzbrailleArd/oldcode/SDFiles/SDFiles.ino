@@ -25,19 +25,13 @@
 #include <SD.h>
 
 
-//Global variables
-
-
-//6 character arrays
-char prev[6];
-char current[6];
-char next[6];
 //class has to be created before object is being created
 //FileSyst class manages the files
  class FileSyst {
     private:
       int counter_files = 0; //use counter when toggling
       int Number_files = 3;
+      int char_read_count = 5;
       File Reading;
     protected:
       File root = SD.open("/");
@@ -45,12 +39,8 @@ char next[6];
       String SDFile2;
       String SDFile3;
     public:
-      //6 character cache
       //init with empty array
-      char Prev_Line[6]= {' ',' ',' ',' ',' ',' '};
-      char Current_Line[6]= {' ',' ',' ',' ',' ',' '};
-      char Next_Line[6]= {' ',' ',' ',' ',' ',' '};
-      char temp[6] = {' ',' ',' ',' ',' ',' '}; //temporary array used in calc
+      char Current_Line[5]= {' ',' ',' ',' ',' '};
 
       //File track;
       String Current_File;
@@ -113,47 +103,30 @@ char next[6];
           return ' ';
         }
       }
-      //read next six char
+      //read next 5 char
       void Read_next_six_char(){
-        for (int i = 0; i < 6;i++){
-          temp[i] = Read_current();
-          //reassign each character
-          Prev_Line[i] = Current_Line[i];
-          Current_Line[i] = Next_Line[i];
-          Next_Line[i] = temp[i];
+        for (int i = 0; i < char_read_count;i++){
+          Current_Line[i] = Read_current();
         }
         Serial.print("location ");
         Serial.println(Reading.position());
         
         
       }
-      //previous 6 characters
+      //previous 5 characters
       void Read_prev_six_char(){
-        unsigned long location = Reading.position()-24;//reader goes to 6 characters before previous
+        unsigned long location = Reading.position()-2*char_read_count;
         boolean checker = Reading.seek(location);
           if (checker){
             Serial.println("prevexist");
-            for (int i = 0; i < 6;i++){
-            temp[i] = Read_current();
-            Next_Line[i] = Current_Line[i];
-            Current_Line[i] = Prev_Line[i];
-            Prev_Line[i] = temp[i];
+            for (int i = 0; i < char_read_count;i++){
+            Current_Line[i] = Read_current();
             }
-            Reading.seek(Reading.position()+6);//position reader head back to the last character of next;
           }
           else{
-            //note this means prev is empty so return default state where prev is empty current is [0,6] and next is [6,12]
-            Reading.seek(0);
-            Serial.println("prev not exist");
-            for (int i = 0; i < 6;i++){
-              temp[i] = Read_current();
-              Current_Line[i] = temp[i];
-              Prev_Line[i] = ' ';
-            }
-            for (int i = 0; i < 6;i++){
-              Next_Line[i] = Read_current();
-            }
-            
+            //note this means prev is empty we are in [0,5]
+            //so we do nothing
+            Serial.println("we are in [0,5]");
          }
          Serial.print("location ");
          Serial.println(Reading.position());
@@ -185,59 +158,62 @@ void setup() {
   Serial.println("next");
   FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
      Serial.println("next");
-  FileSystemSD.Read_next_six_char();
+     FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
-      Serial.println("next");
-  FileSystemSD.Read_next_six_char();
+     Serial.println("next");
+     FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
-      Serial.println("next");
-  FileSystemSD.Read_next_six_char();
+     Serial.println("next");
+     FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
-        Serial.println("prev");
-  FileSystemSD.Read_prev_six_char();
+     Serial.println("next");
+     FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
-      Serial.println("prev");
-  FileSystemSD.Read_prev_six_char();
+     Serial.println("next");
+     FileSystemSD.Read_next_six_char();
   //Print text in current
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
     Serial.println(" ");
-      Serial.println("prev");
-  FileSystemSD.Read_prev_six_char();
-  //Print text in current
-  for (int i = 0; i < 6; i++){
-    Serial.print(FileSystemSD.Current_Line[i]);
-    }
-   FileSystemSD.Read_next_six_char();
-  //Print text in current
-  for (int i = 0; i < 6; i++){
-    Serial.print(FileSystemSD.Current_Line[i]);
-    }
-    
-    
+     Serial.println("next");
 
+     FileSystemSD.Read_next_six_char();
+  //Print text in current
+  for (int i = 0; i < 5; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+    Serial.println(" ");
+     Serial.println("next");
+     FileSystemSD.Read_prev_six_char();
+  //Print text in current
+  for (int i = 0; i < 5; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+    Serial.println(" ");
+     Serial.println("next");
+  
 }
 
 void loop() {
