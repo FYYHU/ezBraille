@@ -41,6 +41,7 @@
     public:
       //5 character cache
       //init with empty array
+      boolean end_file_flag = false;//track if we are end of file
       char Prev_Line[5]= {' ',' ',' ',' ',' '};
       char Current_Line[5]= {' ',' ',' ',' ',' '};
       char Next_Line[5]= {' ',' ',' ',' ',' '};
@@ -96,6 +97,7 @@
         Serial.println(File_List[counter_files]);
         //reopen
         Reading = SD.open(Current_File);
+        end_file_flag = false;//reset end_file_flag
       }
       //TODO create method to Read file and return char
       //Read char from file assumes file is open
@@ -104,17 +106,15 @@
             return Reading.read();
         }else{
           //done reading
+          //set end file flag
+          end_file_flag = true;
           return ' ';
         }
       }
       //read next 5 char
-      void Read_next_six_char(){
+      void Read_next_line(){
         for (int i = 0; i < char_read_count;i++){
-          temp[i] = Read_current();
-          //reassign each character
-          Prev_Line[i] = Current_Line[i];
-          Current_Line[i] = Next_Line[i];
-          Next_Line[i] = temp[i];
+          Current_Line[i] = Read_current();
         }
         Serial.print("location ");
         Serial.println(Reading.position());
@@ -122,35 +122,26 @@
         
       }
       //previous 5 characters
-      void Read_prev_six_char(){
-        unsigned long location = Reading.position()-3*char_read_count;//reader goes to 5 characters before previous
+      void Read_prev_line(){
+        unsigned long location = Reading.position()-2*char_read_count;//reader goes to 5 characters before previous
         boolean checker = Reading.seek(location);
           if (checker){
             Serial.println("prevexist");
             for (int i = 0; i < char_read_count;i++){
-            temp[i] = Read_current();
-            Next_Line[i] = Current_Line[i];
-            Current_Line[i] = Prev_Line[i];
-            Prev_Line[i] = temp[i];
+            Current_Line[i] = Read_current();
             }
-            Reading.seek(Reading.position()+char_read_count);//position reader head back to the last character of next;
           }
           else{
-            //note this means prev is empty so return default state where prev is empty current is [0,5] and next is [5,10]
+            //note this means prev is interval before [0,5] we now reset to default state;
             Reading.seek(0);
-            Serial.println("prev not exist");
             for (int i = 0; i < char_read_count;i++){
-              temp[i] = Read_current();
-              Current_Line[i] = temp[i];
-              Prev_Line[i] = ' ';
+            Current_Line[i] = Read_current();
             }
-            for (int i = 0; i < char_read_count;i++){
-              Next_Line[i] = Read_current();
-            }
-            
+            Serial.println("at [0,5]");
          }
          Serial.print("location ");
          Serial.println(Reading.position());
+         end_file_flag = false;//reset end of file flag;
       }
 
   };
@@ -176,12 +167,23 @@ void setup() {
   FileSyst FileSystemSD;
   
   Serial.println("now system reading: ");
+
+  //read next six lines
   Serial.println("next");
-  FileSystemSD.Read_next_six_char();
-  //Print text in current
+  FileSystemSD.Read_next_line();
   for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
+
+     //read prev six lines
+    Serial.println(" ");
+  Serial.println("prev");
+  FileSystemSD.Read_prev_line();
+  for (int i = 0; i < 5; i++){
+    Serial.print(FileSystemSD.Current_Line[i]);
+    }
+
+
 }
 
 void loop() {
