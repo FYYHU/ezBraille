@@ -30,10 +30,7 @@
       //5 character cache
       //init with empty array
       boolean end_file_flag = false;//track if we are end of file
-      char Prev_Line[5]= {' ',' ',' ',' ',' '};
       char Current_Line[5]= {' ',' ',' ',' ',' '};
-      char Next_Line[5]= {' ',' ',' ',' ',' '};
-      char temp[5] = {' ',' ',' ',' ',' '}; //temporary array used in calc
 
       //File track;
       String Current_File;
