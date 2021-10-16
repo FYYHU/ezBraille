@@ -3,10 +3,12 @@
 
 void setup() {
   // put your setup code here, to run once:
-  Servo Myservo;
-  Myservo.attach(3);
-  Serial.print(78);
+  Servo Myservo1;
+  Servo Myservo2;
+  Myservo1.attach(3);
+  Myservo2.attach(4);
 
+ //Servo[10] servoarray = {servo1,servo2};
 }
 
 void loop() {
@@ -16,11 +18,22 @@ void loop() {
 
 //just define the switch case here don't bother about the rest
 //note each case must be with with single quotation mark. i.e. 'k' not "k", double quotation will be treated as a string.
-int Compare(char x){
+
+
+//for (int i = 0; i < 5; i++){
+//    filesyst.read5();
+//    Compare(filesyst.current[i],servoarray[i],servoarray[i+5]);
+//}
+
+
+
+int Compare(char x, Servo motorleft, Servo motorright){
   int result;
   switch (x) {
     case ' ':
       // this is space mapped to the empty cell
+      //ie motorleft.write(angleleft)
+      //motorright.wright(angleright)
       break;
     case '!':
       //'!' -> '⠮'
