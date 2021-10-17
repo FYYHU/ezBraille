@@ -4,7 +4,7 @@
 #include <SD.h>
 
 
-//class has to be created before object is being created
+//class has to be created before object can be created
 //FileSyst class manages the files
  class FileSyst {
     private:
@@ -123,7 +123,7 @@
 
   };
 
-FileSyst* FileSystemSD;
+FileSyst* FileSystemSD;// global pointer to FileSystem Object
 
 
 void setup() {
@@ -142,20 +142,23 @@ void setup() {
   Serial.println("initialization done.");
 
   Serial.println("done!");
+
+  //now we can assign FileSys object to our pointer
   FileSystemSD = new FileSyst();
 
 }
 
 void loop() {
-  FileSystemSD->Read_next_line();// access methods and var in our System using ->
+    // To access methods and var in our class from a pointer we need to use ->
+  FileSystemSD->Read_next_line();// calls the Read_next_line() method
     Serial.println("next");
-     FileSystemSD->Read_next_line();// access methods and var in our System using ->
+     FileSystemSD->Read_next_line();
     Serial.println("next");
   FileSystemSD->Read_next_line();
   for (int i = 0; i < 5; i++){
-    Serial.print(FileSystemSD->Current_Line[i]);
+    Serial.print(FileSystemSD->Current_Line[i]);//accesses the Current_Line array
     }
     
-   delay(10000);                // waits for a second
+   delay(10000);                // waits for 10 second
   
 }
