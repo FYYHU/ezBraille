@@ -27,6 +27,7 @@
       String Current_File;
       String File_List[3];
       FileSyst() {//constructor
+        
       //loop over the 4 first files (we skip file 1) and store the 3 file names
         for (int i = 0; i < Number_files + 1; i++) {
           File entry =  root.openNextFile();
@@ -122,20 +123,39 @@
 
   };
 
-
-//global variables
-
 FileSyst* FileSystemSD;
 
 
 void setup() {
+    // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  FileSyst local;
-  FileSystemSD = & local;
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+
+  Serial.print("Initializing SD card...");
+
+  if (!SD.begin(4)) {
+    Serial.println("initialization failed!");
+    while (1);
+  }
+  Serial.println("initialization done.");
+
+  Serial.println("done!");
+  FileSystemSD = new FileSyst();
 
 }
 
 void loop() {
-  char test = FileSystemSD -> Current_Line[0];
+  FileSystemSD->Read_next_line();// access methods and var in our System using ->
+    Serial.println("next");
+     FileSystemSD->Read_next_line();// access methods and var in our System using ->
+    Serial.println("next");
+  FileSystemSD->Read_next_line();
+  for (int i = 0; i < 5; i++){
+    Serial.print(FileSystemSD->Current_Line[i]);
+    }
+    
+   delay(10000);                // waits for a second
   
 }
