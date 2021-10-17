@@ -43,13 +43,13 @@ void loop() {
 
 
 
-int Compare(char x, motorleft,motorright){
+int Compare(char x, Servo motorleft, Servo motorright){
   int result;
   switch (x) {
     case ' ':
       // this is space mapped to the empty cell
-      motorleft.write(angleleft)
-      motorright.write(angleright
+      motorleft.write(angleleft);
+      motorright.write(angleright);
       break;
     case '!':
       //'!' -> '⠮'
