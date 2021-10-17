@@ -1,3 +1,6 @@
+//This is the main code where we will put each component
+
+
 void setup() {
   // put your setup code here, to run once:
 
