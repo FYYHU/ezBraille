@@ -1,8 +1,6 @@
 
 #include<Servo.h>
-
-void setup() {
-  // put your setup code here, to run once:
+//we have to set them up as global variables;
   Servo Myservo1;
   Servo Myservo2;
   Servo Myservo3;
@@ -13,6 +11,10 @@ void setup() {
   Servo Myservo8;
   Servo Myservo9;
   Servo Myservo10;
+  
+
+void setup() {
+  // put your setup code here, to run once:
   Myservo1.attach(3);
   Myservo2.attach(4);
   Myservo3.attach(5);
