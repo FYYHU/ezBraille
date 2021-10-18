@@ -185,12 +185,13 @@ void setup() {
 }
 
 void loop() {
-    // To access methods and var in our class from a pointer we need to use ->
-    FileSystemSD->Read_next_line();// calls the Read_next_line() method
-    Serial.println("next");
-    FileSystemSD->Read_next_line();
-    Serial.println("next");
-    FileSystemSD->Read_next_line();
+
+    //Set base button values
+    Toggle_value = 0; 
+    Next_value = 0;  
+    Prev_value = 0;
+
+    //read text in Current_Line
     for (int i = 0; i < 5; i++){
         Serial.print(FileSystemSD->Current_Line[i]);//accesses the Current_Line array
     }
@@ -203,20 +204,25 @@ void loop() {
         Next_value = digitalRead(Pin_next);  // read next button input
         Prev_value = digitalRead(Pin_prev); // read prev button input
         if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
-            //TOGGLE FILE
+            FileSystemSD->Toggle_File();
             break; //break out of loop
         } else if (Next_value == HIGH){
             //read_next
+            Serial.println("next");
+            // To access methods and var in our class from a pointer we need to use ->
+            FileSystemSD->Read_next_line();// calls the Read_next_line() method
             break;
         } else if (Prev_value == HIGH){
             //read_prev_line
+            Serial.println("prev");
+            FileSystemSD->Read_prev_line();
             break;
         }
 
     }
-
-
-   delay(1000);                // waits for 1 second
+    
+    Serial.println("Waiting");
+    delay(1000);                // waits for 1 second
   
 }
 
