@@ -131,6 +131,10 @@
 int Toggle_value = 0;
 int Next_value = 0;
 int Prev_value = 0;
+//button pin
+int Pin_prev = 2;   //Pin for prev button
+int Pin_next = 1; //Pin for next button
+int Pin_toggle = 7;   // choose the input pin (for a pushbutton)
 
 //motor variables
 Servo Myservo1;
@@ -144,7 +148,7 @@ Servo Myservo8;
 Servo Myservo9;
 Servo Myservo10;
 //servo array
-Servo[] servoarray = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
+Servo Servoarray[] = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
 
 FileSyst* FileSystemSD;// global pointer to FileSystem Object
 
@@ -199,7 +203,7 @@ void loop() {
 
 
     //BUTTON Loop
-    While(True){
+    while(true){
         Toggle_value = digitalRead(Pin_toggle);  // read toggle button input
         Next_value = digitalRead(Pin_next);  // read next button input
         Prev_value = digitalRead(Pin_prev); // read prev button input
@@ -230,6 +234,8 @@ void loop() {
 //motor char comparison
 int Compare(char x, Servo motorleft, Servo motorright){
   int result;
+  int angleleft = 5;//tempo filled just to make verify work
+  int angleright = 4;
   switch (x) {
     case ' ':
       // this is space mapped to the empty cell
@@ -250,8 +256,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       //'#' -> '⠼' 
       motorleft.write(angleleft);
       motorright.write(angleright);
-      break
-    case'$': 
+      break;
+    case'\u0024': 
       //'$' -> '⠫'
       motorleft.write(angleleft);
       motorright.write(angleright);
@@ -266,7 +272,7 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case''':
+    case'\u0027':
       //''' ->'⠄'
       motorleft.write(angleleft);
       motorright.write(angleright);
@@ -536,8 +542,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case'/':
-      //'/' ->'⠌'
+    case'\u005c':
+      //'\' ->'⠌'
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
@@ -559,3 +565,4 @@ int Compare(char x, Servo motorleft, Servo motorright){
  }
 
 
+ 

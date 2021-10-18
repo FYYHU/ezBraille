@@ -24,7 +24,8 @@ void setup() {
   Myservo8.attach(10);
   Myservo9.attach(11);
   Myservo10.attach(12);
-
+  Serial.begin(9600);
+  Serial.println('\u002f');
 
 }
 

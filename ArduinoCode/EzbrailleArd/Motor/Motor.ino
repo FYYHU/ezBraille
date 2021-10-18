@@ -46,8 +46,11 @@ void loop() {
 
 
 
+//motor char comparison
 int Compare(char x, Servo motorleft, Servo motorright){
   int result;
+  int angleleft = 5;//tempo filled just to make verify work
+  int angleright = 4;
   switch (x) {
     case ' ':
       // this is space mapped to the empty cell
@@ -68,8 +71,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       //'#' -> '⠼' 
       motorleft.write(angleleft);
       motorright.write(angleright);
-      break
-    case'$': 
+      break;
+    case'\u0024': 
       //'$' -> '⠫'
       motorleft.write(angleleft);
       motorright.write(angleright);
@@ -84,7 +87,7 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case''':
+    case'\u0027':
       //''' ->'⠄'
       motorleft.write(angleleft);
       motorright.write(angleright);
@@ -129,7 +132,7 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case '0':
+    case'0':
       //'0' ->'⠴'
       motorleft.write(angleleft);
       motorright.write(angleright);
@@ -354,8 +357,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case'/':
-      //'/' ->'⠌'
+    case'\u005c':
+      //'\' ->'⠌'
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
