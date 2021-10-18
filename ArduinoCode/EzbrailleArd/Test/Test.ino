@@ -26,7 +26,6 @@ void setup() {
   Myservo10.attach(12);
 
 
- //Servo[10] servoarray = {servo1,servo2};
 }
 
 void loop() {

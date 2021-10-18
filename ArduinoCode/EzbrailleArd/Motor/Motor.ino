@@ -12,6 +12,7 @@
   Servo Myservo9;
   Servo Myservo10;
   
+  Servo[] servoarray = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
 
 void setup() {
   // put your setup code here, to run once:
@@ -128,7 +129,7 @@ int Compare(char x, Servo motorleft, Servo motorright){
       motorleft.write(angleleft);
       motorright.write(angleright);
       break;
-    case'0':
+    case '0':
       //'0' ->'⠴'
       motorleft.write(angleleft);
       motorright.write(angleright);

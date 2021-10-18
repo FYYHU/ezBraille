@@ -2,6 +2,7 @@
 
 #include <SPI.h>
 #include <SD.h>
+#include<Servo.h>
 
 
 //class has to be created before object can be created
@@ -123,7 +124,30 @@
 
   };
 
+
+//global variables:
+
+//button values
+int Toggle_value = 0;
+int Next_value = 0;
+int Prev_value = 0;
+
+//motor variables
+Servo Myservo1;
+Servo Myservo2;
+Servo Myservo3;
+Servo Myservo4;
+Servo Myservo5;
+Servo Myservo6;
+Servo Myservo7;
+Servo Myservo8;
+Servo Myservo9;
+Servo Myservo10;
+//servo array
+Servo[] servoarray = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
+
 FileSyst* FileSystemSD;// global pointer to FileSystem Object
+
 
 
 void setup() {
@@ -146,19 +170,386 @@ void setup() {
   //now we can assign FileSys object to our pointer
   FileSystemSD = new FileSyst();
 
+  //attach pin to motor
+  Myservo1.attach(3);
+  Myservo2.attach(4);
+  Myservo3.attach(5);
+  Myservo4.attach(6);
+  Myservo5.attach(7);
+  Myservo6.attach(8);
+  Myservo7.attach(9);
+  Myservo8.attach(10);
+  Myservo9.attach(11);
+  Myservo10.attach(12);
+
 }
 
 void loop() {
     // To access methods and var in our class from a pointer we need to use ->
-  FileSystemSD->Read_next_line();// calls the Read_next_line() method
+    FileSystemSD->Read_next_line();// calls the Read_next_line() method
     Serial.println("next");
-     FileSystemSD->Read_next_line();
+    FileSystemSD->Read_next_line();
     Serial.println("next");
-  FileSystemSD->Read_next_line();
-  for (int i = 0; i < 5; i++){
-    Serial.print(FileSystemSD->Current_Line[i]);//accesses the Current_Line array
+    FileSystemSD->Read_next_line();
+    for (int i = 0; i < 5; i++){
+        Serial.print(FileSystemSD->Current_Line[i]);//accesses the Current_Line array
     }
     
-   delay(10000);                // waits for 10 second
+
+
+    //BUTTON Loop
+    While(True){
+        Toggle_value = digitalRead(Pin_toggle);  // read toggle button input
+        Next_value = digitalRead(Pin_next);  // read next button input
+        Prev_value = digitalRead(Pin_prev); // read prev button input
+        if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
+            //TOGGLE FILE
+            break; //break out of loop
+        } else if (Next_value == HIGH){
+            //read_next
+            break;
+        } else if (Prev_value == HIGH){
+            //read_prev_line
+            break;
+        }
+
+    }
+
+
+   delay(1000);                // waits for 1 second
   
 }
+
+
+//motor char comparison
+int Compare(char x, Servo motorleft, Servo motorright){
+  int result;
+  switch (x) {
+    case ' ':
+      // this is space mapped to the empty cell
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case '!':
+      //'!' -> '⠮'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case '"':
+      //'"' -> '⠐'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case '#':
+      //'#' -> '⠼' 
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break
+    case'$': 
+      //'$' -> '⠫'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'%':
+      //'%' -> '⠩'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'&':
+      //'&' ->'⠯'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case''':
+      //''' ->'⠄'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'(':
+      //'(' ->'⠷'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case')':
+      //')' ->'⠾'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'*':
+      //'*' ->'⠡'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'+':
+      //'+' ->'⠬'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case',':
+      //',' ->'⠠'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'-':
+      //'-' ->'⠤'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'.':
+      //'.' ->'⠨'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'/':
+      //'/' ->'⠌'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'0':
+      //'0' ->'⠴'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'1':
+      //'1' ->'⠂'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'2':
+      //'2' ->'⠆'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'3':
+      //'3' ->'⠒'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'4':
+      //'4' ->'⠲'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'5':
+      //'5' ->'⠢'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'6':
+      //'6' ->'⠖'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'7':
+      //'7' ->'⠶'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'8':
+      //'8' ->'⠦'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'9':
+      //'9' ->'⠔'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case':':
+      //':' ->'⠱'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case';':
+      //';' ->'⠰'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'<':
+      //'<' ->'⠣'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'=':
+      //'=' ->'⠿'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'>':
+      //'>' ->'⠜'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'?':
+      //'?' ->'⠹'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'@':
+      //'@' ->'⠈'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'A':
+      //'A' ->'⠁'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'B':
+      //'B' ->'⠃'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'C':
+      //'C' ->'⠉'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'D':
+      //'D' ->'⠙'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'E':
+      //'E' ->'⠑'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'F':
+      //'F' ->'⠋'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'G':
+      //'G' ->'⠛'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'H':
+      //'H' ->'⠓'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'I':
+      //'I' ->'⠊'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'J':
+      //'J' ->'⠚'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'K':
+      //'K' ->'⠅'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'L':
+      //'L' ->'⠇'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'M':
+      //'M' ->'⠍'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'N':
+      //'N' ->'⠝'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'O':
+      //'O' ->'⠕'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'P':
+      //'P' ->'⠏'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'Q':
+      //'Q' ->'⠟'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'R':
+      //'R' ->'⠗'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'S':
+      //'S' ->'⠎'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'T':
+      //'T' ->'⠞'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'U':
+      //'U' ->'⠥'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'V':
+      //'V' ->'⠧'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'W':
+      //'W' ->'⠺'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'X':
+      //'X' ->'⠭'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'Y':
+      //'Y' ->'⠽'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'Z':
+      //'Z' ->'⠵'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case']':
+      //']' ->'⠻'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'[':
+      //'[' ->'⠪'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'/':
+      //'/' ->'⠌'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'^':
+      //'^' ->'⠘'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    case'_':
+      //'_' ->'⠸⠸'
+      motorleft.write(angleleft);
+      motorright.write(angleright);
+      break;
+    default:
+      // default case is if everything above fails
+      break;
+  }
+  return result;
+ }
+
+
