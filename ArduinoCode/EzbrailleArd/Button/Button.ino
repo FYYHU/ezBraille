@@ -5,6 +5,10 @@ int Pin_prev = 2;   //Pin for prev button
 //int Toggle_value = 0;
 //int Next_value = 0;
 int Prev_value = 0;
+
+
+boolean Auto_Read = true; // if true we auto read
+
 void setup() {
   Serial.begin(9600);
   pinMode(Pin_prev, INPUT);    // declare pushbutton as input
