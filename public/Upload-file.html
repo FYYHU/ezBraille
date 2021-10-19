@@ -64,7 +64,7 @@
         <p class="u-text u-text-2">By uploading a text file here, the file will be converted by the programming into a different file. This file has to be uploaded to an SD card, which can then be put into the Easy-Braille. The Arduino Mega in the Easy-Braille uses this file to display the braille translation of the digital text.</p>
         <form method="POST" action="/upload" enctype="multipart/form-data">
           <div>
-              <input type="file" name="text" class="u-btn u-button-style u-btn-1" accept=".txt" />
+              <input type="file" required name="text" class="u-btn u-button-style u-btn-1" accept=".txt" />
           </div>
           <div>
               <input type="submit" name="btn_upload_profile_pic" class="u-btn u-button-style u-btn-1" value="Upload" />
