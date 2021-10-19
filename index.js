@@ -31,6 +31,9 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .get('/', (req, res) => res.send('/index.html'))
 
+app.get('/upload', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public/Upload-file.html'));
+})
 
 
 //upload api
@@ -47,6 +50,10 @@ app.post('/upload', (req, res) => {
 
 app.get('/Home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/Home.html'));
+});
+
+app.get('/About', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/About.html'));
 });
 
 //dowload api 
