@@ -13,6 +13,8 @@
 #include <SD.h>
 
 
+int SDCardPin = 53;
+
 //class has to be created before object is being created
 //FileSyst class manages the files
  class FileSyst {
@@ -140,7 +142,7 @@ void setup() {
 
   Serial.print("Initializing SD card...");
 
-  if (!SD.begin(4)) {
+  if (!SD.begin(SDCardPin)) {
     Serial.println("initialization failed!");
     while (1);
   }
@@ -162,8 +164,8 @@ void setup() {
 
      //read prev six lines
     Serial.println(" ");
-  Serial.println("prev");
-  FileSystemSD.Read_prev_line();
+  Serial.println("next");
+  FileSystemSD.Read_next_line();
   for (int i = 0; i < 5; i++){
     Serial.print(FileSystemSD.Current_Line[i]);
     }
