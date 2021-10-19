@@ -54,8 +54,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
   switch (x) {
     case ' ':
       // this is space mapped to the empty cell
-      motorleft.write(angleleft);
-      motorright.write(angleright);
+      motorleft.write(54);
+      motorright.write(54);
       break;
     case '!':
       //'!' -> '⠮'
