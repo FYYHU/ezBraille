@@ -126,15 +126,18 @@
 
 
 //global variables:
-
+//true if auto read on
+boolean auto_read = true;
 //button values
 int Toggle_value = 0;
 int Next_value = 0;
 int Prev_value = 0;
+int Touch_Sensor_value = 0;
 //button pin
 int Pin_prev = 2;   //Pin for prev button
 int Pin_next = 1; //Pin for next button
 int Pin_toggle = 7;   // choose the input pin (for a pushbutton)
+int Touch_Sensor_Pin = 24;
 
 //motor variables
 Servo Myservo1;
@@ -185,6 +188,11 @@ void setup() {
   Myservo8.attach(10);
   Myservo9.attach(11);
   Myservo10.attach(12);
+  //setup button pins
+  pinMode(Touch_Sensor_Pin, INPUT);
+  pinMode(Pin_prev, INPUT);
+  pinMode(Pin_next, INPUT);
+  pinMode(Pin_toggle, INPUT);
 
 }
 
@@ -221,6 +229,12 @@ void loop() {
             Serial.println("prev");
             FileSystemSD->Read_prev_line();
             break;
+        } else if (Touch_Sensor_value == HIGH){
+          //read_next
+          Serial.println("next");
+          // To access methods and var in our class from a pointer we need to use ->
+          FileSystemSD->Read_next_line();// calls the Read_next_line() method
+          break;
         }
 
     }
