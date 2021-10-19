@@ -114,8 +114,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       break;
     case ',':
       //',' ->'⠠'
-      motorleft.write(angleleft);
-      motorright.write(angleright);
+      motorleft.write(18);
+      motorright.write(54);
       break;
     case '-':
       //'-' ->'⠤'
@@ -124,8 +124,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
       break;
     case '.':
       //'.' ->'⠨'
-      motorleft.write(angleleft);
-      motorright.write(angleright);
+      motorleft.write(18);
+      motorright.write(90);
       break;
     case '/':
       //'/' ->'⠌'
