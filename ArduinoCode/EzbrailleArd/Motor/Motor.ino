@@ -12,7 +12,7 @@
   Servo Myservo9;
   Servo Myservo10;
   
-  Servo[] servoarray = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
+  Servo servoarray []= {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
 
 void setup() {
   // put your setup code here, to run once:
