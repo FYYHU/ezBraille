@@ -59,58 +59,58 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	      break;
 	    case '!':
 	      //'!' -> '⠮'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(18);
 	      break;
 	    case '"':
 	      //'"' -> '⠐'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(36);
 	      break;
 	    case '#':
 	      //'#' -> '⠼' 
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '$': 
 	      //'$' -> '⠫'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '%':
 	      //'%' -> '⠩'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '&':
 	      //'&' ->'⠯'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(72);
+	      motorright.write(120);
 	      break;
 	    case'\u0027':
 	      //''' ->'⠄'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(36);
 	      break;
 	    case '(':
 	      //'(' ->'⠷'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(72);
+	      motorright.write(108);
 	      break;
 	    case ')':
 	      //')' ->'⠾'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(72);
 	      break;
 	    case '*':
 	      //'*' ->'⠡'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '+':
 	      //'+' ->'⠬'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case ',':
 	      //',' ->'⠠'
@@ -119,103 +119,103 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	      break;
 	    case '-':
 	      //'-' ->'⠤'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '.':
 	      //'.' ->'⠨'
 	      motorleft.write(18);
-	      motorright.write(ul);
+	      motorright.write(108);
 	      break;
 	    case '/':
 	      //'/' ->'⠌'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(36);
+	      motorright.write(0);
 	      break;
 	    case '0':
 	      //'0' ->'⠴'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(18);
+	      motorright.write(90);
 	      break;
 	    case '1':
 	      //'1' ->'⠂'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(0);
+	      motorright.write(54);
 	      break;
 	    case '2':
 	      //'2' ->'⠆'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(90);
+	      motorright.write(54);
 	      break;
 	    case '3':
 	      //'3' ->'⠒'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(0);
+	      motorright.write(0);
 	      break;
 	    case '4':
 	      //'4' ->'⠲'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(0);
+	      motorright.write(90);
 	      break;
 	    case '5':
 	      //'5' ->'⠢'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(0);
+	      motorright.write(18);
 	      break;
 	    case '6':
 	      //'6' ->'⠖'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(90);
+	      motorright.write(0);
 	      break;
 	    case '7':
 	      //'7' ->'⠶'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(90);
+	      motorright.write(90);
 	      break;
 	    case '8':
 	      //'8' ->'⠦'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(90);
+	      motorright.write(18);
 	      break;
 	    case '9':
 	      //'9' ->'⠔'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(18);
+	      motorright.write(0);
 	      break;
 	    case ':':
 	      //':' ->'⠱'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(18);
+	      motorright.write(18);
 	      break;
 	    case ';':
 	      //';' ->'⠰'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(54);
 	      break;
 	    case '<':
 	      //'<' ->'⠣'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '=':
 	      //'=' ->'⠿'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '>':
 	      //'>' ->'⠜'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '?':
 	      //'?' ->'⠹'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(36);
 	      break;
 	    case '@':
 	      //'@' ->'⠈'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case 'A':
 	      //'A' ->'⠁'
@@ -349,28 +349,28 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	      break;
 	    case ']':
 	      //']' ->'⠻'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(108);
 	      break;
 	    case '[':
 	      //'[' ->'⠪'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(108);
+	      motorright.write(108);
 	      break;
 	    case '\u005c':
 	      //'\' ->'⠌'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '^':
 	      //'^' ->'⠘'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(54);
+	      motorright.write(54);
 	      break;
 	    case '_':
 	      //'_' ->'⠸⠸'
-	      motorleft.write(angleleft);
-	      motorright.write(angleright);
+	      motorleft.write(36);
+	      motorright.write(36);
 	      break;
 	    default:
 	      // default case is if everything above fails
