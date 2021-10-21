@@ -1,5 +1,7 @@
 
 #include<Servo.h>
+
+  int testinput = 0;
 //we have to set them up as global variables;
   Servo Myservo1;
   Servo Myservo2;
@@ -12,26 +14,38 @@
   Servo Myservo9;
   Servo Myservo10;
   
-  Servo servoarray []= {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
+  Servo servoarray [] = {Myservo1, Myservo2, Myservo3,Myservo4,Myservo5,Myservo6,Myservo7,Myservo8,Myservo9,Myservo10};
 
 void setup() {
   // put your setup code here, to run once:
-  Myservo1.attach(3);
-  Myservo2.attach(4);
-  Myservo3.attach(5);
-  Myservo4.attach(6);
-  Myservo5.attach(7);
-  Myservo6.attach(8);
-  Myservo7.attach(9);
-  Myservo8.attach(10);
-  Myservo9.attach(11);
-  Myservo10.attach(12);
+  Serial.begin(9600);
+  Myservo1.attach(2);
+  Myservo2.attach(3);
+  Myservo3.attach(4);
+  Myservo4.attach(5);
+  Myservo5.attach(6);
+  Myservo6.attach(7);
+  Myservo7.attach(8);
+  Myservo8.attach(9);
+  Myservo9.attach(10);
+  Myservo10.attach(11);
 
- //Servo[10] servoarray = {servo1,servo2};
+  Servo servoarray[] = {Myservo1, Myservo2,Myservo3, Myservo4,Myservo5 , Myservo6,Myservo7,Myservo8,Myservo9,Myservo10}; 
+
+
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  testinput = (testinput + 45)%90; 
+  Myservo1.write(testinput);
+  Myservo2.write(testinput);
+  Myservo3.write(testinput);
+  Myservo4.write(testinput);
+  Myservo5.write(testinput);
+  Myservo6.write(testinput);
+  Serial.println("loop");
+  delay(1000);
 
 }
 
@@ -49,8 +63,6 @@ void loop() {
 //motor char comparison
 int Compare(char x, Servo motorleft, Servo motorright){
   int result;
-  int angleleft = 5;//tempo filled just to make verify work
-  int angleright = 4;
   switch (x) {
 	    case ' ':
 	      // this is space mapped to the empty cell
@@ -69,8 +81,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	      break;
 	    case '#':
 	      //'#' -> '⠼' 
-	      motorleft.write(54);
-	      motorright.write(54);
+	      motorleft.write(0);
+	      motorright.write(72);
 	      break;
 	    case '$': 
 	      //'$' -> '⠫'
@@ -378,5 +390,3 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	  }
 	  return result;
 	 }
-
-

@@ -136,10 +136,10 @@ int Next_value = 0;
 int Prev_value = 0;
 int Touch_Sensor_value = 0;
 //button pin
-int Pin_prev = 2;   //Pin for prev button
-int Pin_next = 1; //Pin for next button
-int Pin_toggle = 7;   // choose the input pin (for a pushbutton)
-int Touch_Sensor_Pin = 24;
+int Pin_prev = 22;   //Pin for prev button
+int Pin_next = 24; //Pin for next button
+int Pin_toggle = 26;   // choose the input pin (for a pushbutton)
+int Touch_Sensor_Pin = 36;
 
 //motor variables
 Servo Myservo1;
@@ -180,16 +180,16 @@ void setup() {
   FileSystemSD = new FileSyst();
 
   //attach pin to motor
-  Myservo1.attach(3);
-  Myservo2.attach(4);
-  Myservo3.attach(5);
-  Myservo4.attach(6);
-  Myservo5.attach(7);
-  Myservo6.attach(8);
-  Myservo7.attach(9);
-  Myservo8.attach(10);
-  Myservo9.attach(11);
-  Myservo10.attach(12);
+  Myservo1.attach(2);
+  Myservo2.attach(3);
+  Myservo3.attach(4);
+  Myservo4.attach(5);
+  Myservo5.attach(6);
+  Myservo6.attach(7);
+  Myservo7.attach(8);
+  Myservo8.attach(9);
+  Myservo9.attach(10);
+  Myservo10.attach(11);
   //setup button pins
   pinMode(Touch_Sensor_Pin, INPUT);
   pinMode(Pin_prev, INPUT);
@@ -200,14 +200,14 @@ void setup() {
 
 void loop() {
 
-    //Set base button values
-    Toggle_value = 0; 
+    //Set base button values 
     Next_value = 0;  
     Prev_value = 0;
 
     //read text in Current_Line
     for (int i = 0; i < 5; i++){
         Serial.print(FileSystemSD->Current_Line[i]);//accesses the Current_Line array
+		Compare(FileSystemSD->Current_Line[i],Servoarray[i],Servoarray[i+5]);
     }
     
 
@@ -217,6 +217,7 @@ void loop() {
         Toggle_value = digitalRead(Pin_toggle);  // read toggle button input
         Next_value = digitalRead(Pin_next);  // read next button input
         Prev_value = digitalRead(Pin_prev); // read prev button input
+		Touch_Sensor_value = digitalRead(Touch_Sensor_Pin);// read touch sensor input
         if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
             FileSystemSD->Toggle_File();
             break; //break out of loop
@@ -233,9 +234,11 @@ void loop() {
             break;
         } else if (Touch_Sensor_value == HIGH){
           //read_next
+          Serial.println("touchsens");
           Serial.println("next");
           // To access methods and var in our class from a pointer we need to use ->
           FileSystemSD->Read_next_line();// calls the Read_next_line() method
+          delay(1000);
           break;
         }
 
@@ -572,7 +575,8 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	      motorright.write(36);
 	      break;
 	    default:
-	      // default case is if everything above fails
+	      motorleft.write(54);
+		  motorright.write(54);
 	      break;
 	  }
 	  return result;
