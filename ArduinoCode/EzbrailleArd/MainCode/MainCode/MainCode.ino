@@ -135,10 +135,12 @@ int Toggle_value = 0;
 int Next_value = 0;
 int Prev_value = 0;
 int Touch_Sensor_value = 0;
+int Auto_read_value = 0;
 //button pin
 int Pin_prev = 22;   //Pin for prev button
 int Pin_next = 24; //Pin for next button
 int Pin_toggle = 26;   // choose the input pin (for a pushbutton)
+int Pin_auto = 28; //choose input pin for toggle auto read
 int Touch_Sensor_Pin = 36;
 
 //motor variables
@@ -218,6 +220,7 @@ void loop() {
         Next_value = digitalRead(Pin_next);  // read next button input
         Prev_value = digitalRead(Pin_prev); // read prev button input
 		Touch_Sensor_value = digitalRead(Touch_Sensor_Pin);// read touch sensor input
+		Auto_read_value = digitalRead(Pin_auto);
         if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
             FileSystemSD->Toggle_File();
             break; //break out of loop
@@ -232,7 +235,7 @@ void loop() {
             Serial.println("prev");
             FileSystemSD->Read_prev_line();
             break;
-        } else if (Touch_Sensor_value == HIGH){
+        } else if (Touch_Sensor_value == HIGH && auto_read){
           //read_next
           Serial.println("touchsens");
           Serial.println("next");
@@ -240,7 +243,9 @@ void loop() {
           FileSystemSD->Read_next_line();// calls the Read_next_line() method
           delay(1000);
           break;
-        }
+        } else if (Auto_read_value == HIGH){
+			auto_read = !auto_read;
+		}
 
     }
     
