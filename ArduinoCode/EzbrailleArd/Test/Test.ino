@@ -1,5 +1,3 @@
-//This is the main code where we will put each component
-
 #include <SPI.h>
 #include <SD.h>
 #include<Servo.h>
@@ -11,7 +9,7 @@
  class FileSyst {
     private:
       int counter_files = 0; //use counter when toggling
-      int Number_files = 3;
+      int Number_files = 3; //number of files read from SD
       int char_read_count = 5;
       File Reading;
     protected:
@@ -30,7 +28,7 @@
       String File_List[3];
       FileSyst() {//constructor
         
-      //loop over the 4 first files (we skip file 1) and store the 3 file names
+      //loop over the 3 first files (we skip file 1) and store the 3 file names
         for (int i = 0; i < Number_files + 1; i++) {
           File entry =  root.openNextFile();
           if (! entry) {
@@ -126,6 +124,7 @@
   };
 
 
+char testarray[] = {'A','B','C','D','E','F','G', 'H', 'I', 'J'};
 //global variables:
 int SDCardPin = 53;
 //true if auto read on
@@ -135,10 +134,12 @@ int Toggle_value = 0;
 int Next_value = 0;
 int Prev_value = 0;
 int Touch_Sensor_value = 0;
+int Auto_read_value = 0;
 //button pin
 int Pin_prev = 22;   //Pin for prev button
 int Pin_next = 24; //Pin for next button
 int Pin_toggle = 26;   // choose the input pin (for a pushbutton)
+int Pin_auto = 28; //choose input pin for toggle auto read
 int Touch_Sensor_Pin = 36;
 
 //motor variables
@@ -200,15 +201,14 @@ void setup() {
 
 void loop() {
 
-    //Set base button values
-    Toggle_value = 0; 
+    //Set base button values 
     Next_value = 0;  
     Prev_value = 0;
-    char testarray[] = {'A','B','C','D','E','F','G', 'H', 'I', 'J'};
+	
     //read text in Current_Line
     for (int i = 0; i < 5; i++){
-        
-		Compare(Current_Line[i],Servoarray[i],Servoarray[i+5]);
+        Serial.print(testarray[i]);//accesses the Current_Line array
+		Compare(testarray[i],Servoarray[i],Servoarray[i+5]);
     }
     
 
@@ -218,6 +218,8 @@ void loop() {
         Toggle_value = digitalRead(Pin_toggle);  // read toggle button input
         Next_value = digitalRead(Pin_next);  // read next button input
         Prev_value = digitalRead(Pin_prev); // read prev button input
+		Touch_Sensor_value = digitalRead(Touch_Sensor_Pin);// read touch sensor input
+		Auto_read_value = digitalRead(Pin_auto);
         if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
             FileSystemSD->Toggle_File();
             break; //break out of loop
@@ -232,13 +234,17 @@ void loop() {
             Serial.println("prev");
             FileSystemSD->Read_prev_line();
             break;
-        } else if (Touch_Sensor_value == HIGH){
+        } else if (Touch_Sensor_value == HIGH && auto_read){
           //read_next
+          Serial.println("touchsens");
           Serial.println("next");
           // To access methods and var in our class from a pointer we need to use ->
           FileSystemSD->Read_next_line();// calls the Read_next_line() method
+          delay(1000);
           break;
-        }
+        } else if (Auto_read_value == HIGH){
+			auto_read = !auto_read;
+		}
 
     }
     
@@ -579,4 +585,3 @@ int Compare(char x, Servo motorleft, Servo motorright){
 	  }
 	  return result;
 	 }
-

@@ -11,7 +11,7 @@
  class FileSyst {
     private:
       int counter_files = 0; //use counter when toggling
-      int Number_files = 3;
+      int Number_files = 3; //number of files read from SD
       int char_read_count = 5;
       File Reading;
     protected:
@@ -30,7 +30,7 @@
       String File_List[3];
       FileSyst() {//constructor
         
-      //loop over the 4 first files (we skip file 1) and store the 3 file names
+      //loop over the 3 first files (we skip file 1) and store the 3 file names
         for (int i = 0; i < Number_files + 1; i++) {
           File entry =  root.openNextFile();
           if (! entry) {
@@ -241,10 +241,12 @@ void loop() {
           Serial.println("next");
           // To access methods and var in our class from a pointer we need to use ->
           FileSystemSD->Read_next_line();// calls the Read_next_line() method
-          delay(1000);
+          delay(250);
           break;
         } else if (Auto_read_value == HIGH){
-			auto_read = !auto_read;
+			    auto_read = !auto_read;
+          Serial.println("autoread toggle");
+          delay(1000);
 		}
 
     }
