@@ -269,19 +269,23 @@ void Compare(char x, Servo motorleft, Servo motorright){
 	int middle_L = 180-25*2;
 	int lower_L = 180-3*25;
 	int upper_lower_L = 180 - 4*25;
-  	int upper_middle_L = 25*3;
-	int middle_lower_L = 25*2;
-  	int all_L = 25;
+  	int upper_middle_L = 180-5*25;
+	int middle_lower_L = 180-6*25;
+  	int all_L = 18;
 	  
 	//only right motor
 	int no_dots_R = 0;
-	int upper_R = 180-25;
-	int middle_R = 180-25*2;
-	int lower_R = 180-3*25;
+	int all_R = 25;
+	int upper_middle_R = 25*2;
+	int middle_lower_R = 25*3;
 	int upper_lower_R = 180-4*25;
-  	int upper_middle_R = 25*3;
-	int middle_lower_R = 25*2;
-  	int all_R = 25;
+	int upper_R = 180-25*3;
+	int middle_R = 180-25*2;
+	int lower_R = 180-25;
+	
+  	
+	
+  	
 	
 
   switch (x) {
