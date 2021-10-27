@@ -17,8 +17,8 @@ for (var i = 0; i < g.length; i++) {
     process.stdout.write(g.charAt(i) + " ");
   }
 console.log('\n');
-console.log("AAAAA BBBBB CCCCC");
-console.log(br.toBraille("AAAAA BBBBB CCCCC"));
+console.log("helloworld");
+console.log(br.toBraille("helloworld"));
 
 
 
