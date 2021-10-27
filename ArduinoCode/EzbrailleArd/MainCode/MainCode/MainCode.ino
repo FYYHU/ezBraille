@@ -406,7 +406,7 @@ void Compare(char x, Servo motorleft, Servo motorright){
 		      motorright.write(middle);
 		      break;
 		    case ';':
-		      //';' ->'⠰'
+		      //';' ->'⠛'
 		      motorleft.write(middle_lower);
 		      motorright.write(no_dots);
 		      break;
