@@ -77,6 +77,9 @@
         //reopen
         Reading = SD.open(Current_File);
         end_file_flag = false;//reset end_file_flag
+        for (int i = 0; i < char_read_count;i++){
+          Current_Line[i] = ' ';
+        }
       }
       //TODO create method to Read file and return char
       //Read char from file assumes file is open
