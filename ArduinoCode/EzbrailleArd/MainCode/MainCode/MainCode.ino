@@ -223,17 +223,20 @@ void loop() {
 		Auto_read_value = digitalRead(Pin_auto);
         if (Toggle_value == HIGH) {         // check if the input is HIGH (button released)
             FileSystemSD->Toggle_File();
+			delay(250);
             break; //break out of loop
         } else if (Next_value == HIGH){
             //read_next
             Serial.println("next");
             // To access methods and var in our class from a pointer we need to use ->
             FileSystemSD->Read_next_line();// calls the Read_next_line() method
+			delay(250);
             break;
         } else if (Prev_value == HIGH){
             //read_prev_line
             Serial.println("prev");
             FileSystemSD->Read_prev_line();
+			delay(250);
             break;
         } else if (Touch_Sensor_value == HIGH && auto_read){
           //read_next
@@ -252,343 +255,355 @@ void loop() {
     }
     
     Serial.println("Waiting");
-    delay(1000);                // waits for 1 second
+    delay(500);                // waits for 0.5 second
   
 }
 
 
 //motor char comparison
 void Compare(char x, Servo motorleft, Servo motorright){
-	int no_dots = 0;
-	int upper = 18;
-	int middle = 36;
-	int lower = 54;
-	int upper_lower = 72;
-  	int upper_middle = 90;
-	int middle_lower = 108;
-  	int all = 126;
+
+	//only left motor
+	int no_dots_L = 0;
+	int upper_L = 180-25;
+	int middle_L = 180-25*2;
+	int lower_L = 180-3*25;
+	int upper_lower_L = 180 - 4*25;
+  	int upper_middle_L = 25*3;
+	int middle_lower_L = 25*2;
+  	int all_L = 25;
+	  
+	//only right motor
+	int no_dots_R = 0;
+	int upper_R = 180-25;
+	int middle_R = 180-25*2;
+	int lower_R = 180-3*25;
+	int upper_lower_R = 180-4*25;
+  	int upper_middle_R = 25*3;
+	int middle_lower_R = 25*2;
+  	int all_R = 25;
 	
 
   switch (x) {
 		    case ' ':
 		      // this is space mapped to the empty cell
-		      motorleft.write(no_dots);
-		      motorright.write(no_dots);
+		      motorleft.write(no_dots_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '!':
 		      //'!' -> '⠁'
-		      motorleft.write(upper);
-		      motorright.write(no_dots);
+		      motorleft.write(upper_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '"':
 		      //'"' -> '⠂'
-		      motorleft.write(middle);
-		      motorright.write(no_dots);
+		      motorleft.write(middle_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '#':
 		      //'#' -> '⠃' 
-		      motorleft.write(upper_middle);
-		      motorright.write(no_dots);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '$': 
 		      //'$' -> '⠄'
-		      motorleft.write(lower);
-		      motorright.write(no_dots);
+		      motorleft.write(lower_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '%':
 		      //'%' -> '⠅'
-		      motorleft.write(upper_lower);
-		      motorright.write(no_dots);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '&':
 		      //'&' ->'⠆'
-		      motorleft.write(middle_lower);
-		      motorright.write(no_dots);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '\u0027':
 		      //''' ->'⠇'
-		      motorleft.write(all);
-		      motorright.write(no_dots);
+		      motorleft.write(all_L);
+		      motorright.write(no_dots_R);
 		      break;
 		    case '(':
 		      //'(' ->'⠈'
-		      motorleft.write(no_dots);
-		      motorright.write(upper);
+		      motorleft.write(no_dots_L);
+		      motorright.write(upper_R);
 		      break;
 		    case ')':
 		      //')' ->'⠉'
-		      motorleft.write(upper);
-		      motorright.write(upper);
+		      motorleft.write(upper_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '*':
 		      //'*' ->'⠊'
-		      motorleft.write(middle);
-		      motorright.write(upper);
+		      motorleft.write(middle_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '+':
 		      //'+' ->'⠋'
-		      motorleft.write(upper_middle);
-		      motorright.write(upper);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_R);
 		      break;
 		    case ',':
 		      //',' ->'⠌'
-		      motorleft.write(lower);
-		      motorright.write(upper);
+		      motorleft.write(lower_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '-':
 		      //'-' ->'⠍'
-		      motorleft.write(upper_lower);
-		      motorright.write(upper);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '.':
 		      //'.' ->'⠎'
-		      motorleft.write(middle_lower);
-		      motorright.write(upper);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '/':
 		      //'/' ->'⠏'
-		      motorleft.write(all);
-		      motorright.write(upper);
+		      motorleft.write(all_L);
+		      motorright.write(upper_R);
 		      break;
 		    case '0':
 		      //'upper' ->'⠐'
-		      motorleft.write(no_dots);
-		      motorright.write(middle);
+		      motorleft.write(no_dots_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '1':
 		      //'1' ->'⠑'
-		      motorleft.write(upper);
-		      motorright.write(middle);
+		      motorleft.write(upper_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '2':
 		      //'2' ->'⠒'
-		      motorleft.write(middle);
-		      motorright.write(middle);
+		      motorleft.write(middle_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '3':
 		      //'3' ->'⠓'
-		      motorleft.write(upper_middle);
-		      motorright.write(middle);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '4':
 		      //'4' ->'⠔'
-		      motorleft.write(lower);
-		      motorright.write(middle);
+		      motorleft.write(lower_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '5':
 		      //'5' ->'⠕'
-		      motorleft.write(upper_lower);
-		      motorright.write(middle);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '6':
 		      //'6' ->'⠖'
-		      motorleft.write()middle_lower;
-		      motorright.write(middle);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '7':
 		      //'7' ->'⠗'
-		      motorleft.write(all);
-		      motorright.write(middle);
+		      motorleft.write(all_L);
+		      motorright.write(middle_R);
 		      break;
 		    case '8':
 		      //'8' ->'⠘'
-		      motorleft.write(no_dots);
-		      motorright.write(upper_middle);
+		      motorleft.write(no_dots_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '9':
 		      //'9' ->'⠙'
-		      motorleft.write(upper);
-		      motorright.write(upper_middle);
+		      motorleft.write(upper_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case ':':
 		      //':' ->'⠚'
-		      motorleft.write(middle);
-		      motorright.write(upper_middle);
+		      motorleft.write(middle_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case ';':
 		      //';' ->'⠛'
-		      motorleft.write(upper_lower);
-		      motorright.write(upper_lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '<':
 		      //'<' ->'⠜'
-		      motorleft.write(lower);
-		      motorright.write(upper_middle);
+		      motorleft.write(lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '=':
 		      //'=' ->'⠝'
-		      motorleft.write(upper_lower);
-		      motorright.write(upper_middle);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '>':
 		      //'>' ->'⠞'
-		      motorleft.write(middle_lower);
-		      motorright.write(upper_middle);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '?':
 		      //'?' ->'⠟'
-		      motorleft.write(all);
-		      motorright.write(upper_middle);
+		      motorleft.write(all_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case '@':
 		      //'@' ->'⠠'
-		      motorleft.write(no_dots);
-		      motorright.write(lower);
+		      motorleft.write(no_dots_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'A':
 		      //'A' ->'⠡'
-		      motorleft.write(upper);
-		      motorright.write(lower);
+		      motorleft.write(upper_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'B':
 		      //'B' ->'⠢'
-		      motorleft.write(middle);
-		      motorright.write(lower);
+		      motorleft.write(middle_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'C':
 		      //'C' ->'⠣'
-		      motorleft.write(upper_middle);
-		      motorright.write(lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'D':
 		      //'D' ->'⠤'
-		      motorleft.write(lower);
-		      motorright.write(lower);
+		      motorleft.write(lower_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'E':
 		      //'E' ->'⠥'
-		      motorleft.write(upper_lower);
-		      motorright.write(lower;
+		      motorleft.write(upper_lower_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'F':
 		      //'F' ->'⠦'
-		      motorleft.write(middle_lower);
-		      motorright.write(lower);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'G':
 		      //'G' ->'⠧'
-		      motorleft.write(all);
-		      motorright.write(lower);
+		      motorleft.write(all_L);
+		      motorright.write(lower_R);
 		      break;
 		    case 'H':
 		      //'H' ->'⠨'
-		      motorleft.write(no_dots);
-		      motorright.write(upper_lower);
+		      motorleft.write(no_dots_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'I':
 		      //'I' ->'⠩'
-		      motorleft.write(upper);
-		      motorright.write(upper_lower);
+		      motorleft.write(upper_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'J':
 		      //'J' ->'⠪'
-		      motorleft.write(middle);
-		      motorright.write(upper_lower);
+		      motorleft.write(middle_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'K':
 		      //'K' ->'⠫'
-		      motorleft.write(upper_middle);
-		      motorright.write(upper_lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'L':
 		      //'L' ->'⠬'
-		      motorleft.write(lower);
-		      motorright.write(upper_lower);
+		      motorleft.write(lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'M':
 		      //'M' ->'⠭'
-		      motorleft.write(upper_lower);
-		      motorright.write(upper_lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'N':
 		      //'N' ->'⠮'
-		      motorleft.write(middle_lower);
-		      motorright.write(upper_lower);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'O':
 		      //'O' ->'⠯'
-		      motorleft.write(all);
-		      motorright.write(upper_lower);
+		      motorleft.write(all_L);
+		      motorright.write(upper_lower_R);
 		      break;
 		    case 'P':
 		      //'P' ->'⠰'
-		      motorleft.write(no_dots);
-		      motorright.write(middle_lower);
+		      motorleft.write(no_dots_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'Q':
 		      //'Q' ->'⠱'
-		      motorleft.write(upper);
-		      motorright.write(middle_lower);
+		      motorleft.write(upper_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'R':
 		      //'R' ->'⠲'
-		      motorleft.write(middle);
-		      motorright.write(middle_lower);
+		      motorleft.write(middle_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'S':
 		      //'S' ->'⠳'
-		      motorleft.write(upper_middle);
-		      motorright.write(middle_lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'T':
 		      //'T' ->'⠴'
-		      motorleft.write(lower);
-		      motorright.write(middle_lower);
+		      motorleft.write(lower_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'U':
 		      //'U' ->'⠵'
-		      motorleft.write(upper_lower);
-		      motorright.write(middle_lower);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'V':
 		      //'V' ->'⠶'
-		      motorleft.write(middle_lower);
-		      motorright.write(middle_lower);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'W':
 		      //'W' ->'⠷'
-		      motorleft.write(all);
-		      motorright.write(middle_lower);
+		      motorleft.write(all_L);
+		      motorright.write(middle_lower_R);
 		      break;
 		    case 'X':
 		      //'X' ->'⠸'
-		      motorleft.write(no_dots);
-		      motorright.write(all);
+		      motorleft.write(no_dots_L);
+		      motorright.write(all_R);
 		      break;
 		    case 'Y':
 		      //'Y' ->'⠹'
-		      motorleft.write(upper);
-		      motorright.write(all);
+		      motorleft.write(upper_L);
+		      motorright.write(all_R);
 		      break;
 		    case 'Z':
 		      //'Z' ->'⠺'
-		      motorleft.write(middle);
-		      motorright.write(all);
+		      motorleft.write(middle_L);
+		      motorright.write(all_R);
 		      break;
 		    case '[':
 		      //'[' ->'⠻'
-		      motorleft.write(upper_middle);
-		      motorright.write(all);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(all_R);
 		      break;
 		    case '\u005c':
 		      //'\' ->'⠼'
-		      motorleft.write(lower);
-		      motorright.write(all);
+		      motorleft.write(lower_L);
+		      motorright.write(all_R);
 		      break;
 			case ']':
 		      //']' ->'⠽'
-		      motorleft.write(upper_lower);
-		      motorright.write(all);
+		      motorleft.write(upper_lower_L);
+		      motorright.write(all_R);
 		      break;
 		    case '^':
 		      //'^' ->'⠾'
-		      motorleft.write(middle_lower);
-		      motorright.write(all);
+		      motorleft.write(middle_lower_L);
+		      motorright.write(all_R);
 		      break;
 		    case '_':
 		      //'_' ->'⠿'
-		      motorleft.write(all);
-		      motorright.write(all);
+		      motorleft.write(all_L);
+		      motorright.write(all_R);
 		      break;
 		    default:
 		      // default case is if everything above fails
