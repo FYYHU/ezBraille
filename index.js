@@ -65,8 +65,8 @@ app.get('/download', function(req, res){
   });
 
 
-
-function EmptyUploads(){//deletes all files in uploads
+//deletes all files in uploads
+function EmptyUploads(){
   let fileDir = path.join(__dirname, 'uploads');
   fsExtra.emptyDirSync(fileDir);
   console.log("accessed");
@@ -94,23 +94,8 @@ function Translate(){
 
 
 
-//readfile setup
-var text = fs.readFileSync("./bigtext.txt", 'utf-8');
 
 
-
-
-
-
-//TODO
-//Some byte magic blabla:
-//UTF-8 encoding for braille is as follow: its an 2X8 cell and each 1 and 0 represent dot on/off + 2800 offset
-//What we need to do is take the hexdec value - 2800 and then to binary we get an 8 bit data of our braille
-//https://en.wikipedia.org/wiki/Braille_Patterns for exactly how they mapped it
-// either way first 2 bits can be ommited (they rep dot 7 and 8),but since its easier to send bytes then bit we'll just keep it.
-//Then its just reading the byte per bit from right to left to know which dot is on.
-//for example 01101011 is the same as dots 124
-const hex_rot = new Map();
 
 
 
