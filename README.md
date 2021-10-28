@@ -15,7 +15,7 @@ The main back-end code for the site is index.js. It deals with the translation, 
 
 ## Arduino code
 
-At the start of the development of the Arduino the code is into parts for better workflow. 
+At the start of the development the Arduino code is created in parts for better workflow. 
 - Motor.ino: deals with handling character input to motor movement.
 - SDFilesV2.ino: Handles the reading of the files in the SD-module.
 - TouchSensor.ino: Handles the touch sensor input
