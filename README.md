@@ -1,5 +1,8 @@
 # Easy-Braille
 
+Easy-Brialle is a 2 part braille display system. Containing the Easy-Braille device and webserver. This README explains the workflow of the repository it is assumed the reader has read the original report.
+
+## Content
 
 - Webserver
 - Arduino code
