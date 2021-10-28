@@ -1,4 +1,4 @@
-# ezBraille
+# Easy-Braille
 
 
 - Webserver
