@@ -11,7 +11,7 @@ Easy-Brialle is a 2 part braille display system. Containing the Easy-Braille dev
 
 ## Webserver
 
-The main back-end code for the site is index.js. It deals with the translation, managing uploaded files and routing. The HTML, CSS and other web assets are stored in the public folder. The hosting of our site is done on Heroku and its address is https://ezbraille.herokuapp.com/.
+The main back-end code for the site is index.js. It deals with the translation, managing uploaded files and routing. The HTML, CSS and other web assets are stored in the public folder. The hosting of the site is done on Heroku and its address is https://ezbraille.herokuapp.com/.
 
 ## Arduino code
 
