@@ -21,4 +21,6 @@ At the start of the development the Arduino code is created in parts for better 
 - TouchSensor.ino: Handles the touch sensor input
 - Button.ino: Button input handling
 
-The remaining folders oldcode and test contains old unused code and test codes. The last one MainCode.ino is the final product that contains the assembly and generalisation of the other components into one system.
+The remaining folders oldcode and test contains old unused code and test codes. 
+
+The last one MainCode.ino is the final product that contains the assembly and generalisation of the other components into one system.
